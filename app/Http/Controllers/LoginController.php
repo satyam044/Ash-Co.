@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -47,7 +48,15 @@ class LoginController extends Controller
         ]);
 
         if ($validator->passes()) {
-            
+            $user = new User();
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->password = $request->password;
+            $user->role = 'customer';
+            $user->save();
+
+            return redirect()->route('account.login')->with('success', 'You have registerd successfully!');
+
         } else {
             return redirect()->route('account.signup')
                 ->withInput()
