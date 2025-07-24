@@ -20,6 +20,15 @@
                     <h1 class="text-sm text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                         Log in
                     </h1>
+
+                    @if (Session::has('success'))
+                        <div class="text-center text-green-400">{{ Session::get('success') }}</div>
+                    @endif
+
+                    @if (Session::has('error'))
+                        <div class="text-center text-red-400">{{ Session::get('error') }}</div>
+                    @endif
+                    
                     <form class="space-y-4" action="{{ route('account.authenticate') }}" method="post">
                         @csrf
                         <div>
@@ -38,7 +47,7 @@
                         </div>
                         <button type="submit" class="w-full cursor-pointer text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Sign in</button>
                         <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-                            Don’t have an account yet? <a href="#" class="ml-2 font-medium text-blue-400 underline hover:text-blue-600">Sign up</a>
+                            Don’t have an account yet? <a href="{{ route('account.signup') }}" class="ml-2 font-medium text-blue-400 underline hover:text-blue-600">Sign up</a>
                         </p>
                     </form>
                 </div>
