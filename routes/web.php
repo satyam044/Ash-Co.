@@ -7,4 +7,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', [LoginController::class, 'login'])->name('account.login');
+Route::get('/account/login', [LoginController::class, 'login'])->name('account.login');
+Route::post('/account/authenticate', [LoginController::class, 'authenticate'])->name('account.authenticate');
