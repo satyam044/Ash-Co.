@@ -23,13 +23,33 @@ class LoginController extends Controller
 
         if ($validator->passes()) {
             if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-
             } else {
                 return redirect()->route('account.login')
                     ->with('Either email or password is incorrect');
             };
         } else {
             return redirect()->route('account.login')
+                ->withInput()
+                ->withErrors($validator);
+        }
+    }
+
+    public function signup()
+    {
+        return view('signup');
+    }
+
+    public function signupProcess(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|unique:users',
+            'password' => 'required|confirmed'
+        ]);
+
+        if ($validator->passes()) {
+            
+        } else {
+            return redirect()->route('account.signup')
                 ->withInput()
                 ->withErrors($validator);
         }
