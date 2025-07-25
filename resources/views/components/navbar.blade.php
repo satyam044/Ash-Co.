@@ -37,7 +37,8 @@
 
                 <!-- Profile dropdown -->
                 <div class="relative ml-3">
-                    <button id="user-menu-button" type="button" aria-expanded="false" aria-haspopup="true" class="cursor-pointer relative flex rounded-full bg-white text-sm border-2 border-white hover:border-black">
+                    <button id="user-menu-button" type="button" aria-expanded="false" aria-haspopup="true" class="pl-2 cursor-pointer relative flex items-center gap-2 rounded-full bg-white text-sm border-2 border-white hover:bg-gray-100">
+                        <span class="capitalize">Hello, {{ Auth::user()->name }}</span>
                         <span class="absolute -inset-1.5"></span>
                         <span class="sr-only">Open user menu</span>
                         <img src="{{ asset('Assets/Avatar.svg') }}" alt="" class="size-8 rounded-full" />
@@ -46,7 +47,7 @@
                     <!-- Profile-Menu -->
                     <div id="profile-menu" role="menu" class="hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 focus:outline-none">
                         <a id="user-menu-item-0" role="menuitem" href="#" tabindex="-1" class="block px-4 py-2 text-sm text-gray-700">Your Profile</a>
-                        <a id="user-menu-item-2" role="menuitem" href="#" tabindex="-1" class="block px-4 py-2 text-sm text-gray-700">Log out</a>
+                        <a id="user-menu-item-2" role="menuitem" href="{{ route('account.logout') }}" tabindex="-1" class="block px-4 py-2 text-sm text-gray-700">Log out</a>
                     </div>
                 </div>
             </div>

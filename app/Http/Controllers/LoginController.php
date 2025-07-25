@@ -57,11 +57,16 @@ class LoginController extends Controller
             $user->save();
 
             return redirect()->route('account.login')->with('success', 'You have registerd successfully!');
-
         } else {
             return redirect()->route('account.signup')
                 ->withInput()
                 ->withErrors($validator);
         }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('account.login');
     }
 }
