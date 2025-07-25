@@ -1,4 +1,4 @@
-<nav class="bg-gray-800">
+<nav>
     <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div class="relative flex h-16 items-center justify-between">
             <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -18,18 +18,18 @@
                     </svg>
                 </button>
             </div>
-            <div class="flex shrink-0 items-center">
-                <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" class="h-8 w-auto" />
+            <div class="max-sm:ml-10 flex shrink-0 items-center">
+                <img src="{{ asset('Assets/Logo-(2).png') }}" alt="Ash & Co." class="w-40 brightness-50 cursor-pointer" />
             </div>
             <div class="flex flex-1 items-center justify-center sm:items-stretch">
                 <div class="hidden sm:block">
                     <div class="flex space-x-4">
-                        <a href="#" aria-current="page" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white">Home</a>
-                        <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Calvin Klein</a>
-                        <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Zara</a>
-                        <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Nike</a>
-                        <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Adidas</a>
-                        <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Shop</a>
+                        <a href="#" aria-current="page" class="rounded-md bg-gray-900 px-3 py-2 text-sm text-center font-medium text-white">Home</a>
+                        <a href="#" class="rounded-md px-3 py-2 text-sm text-center font-medium text-white hover:bg-gray-700 hover:text-white">Calvin Klein</a>
+                        <a href="#" class="rounded-md px-3 py-2 text-sm text-center font-medium text-white hover:bg-gray-700 hover:text-white">Zara</a>
+                        <a href="#" class="rounded-md px-3 py-2 text-sm text-center font-medium text-white hover:bg-gray-700 hover:text-white">Nike</a>
+                        <a href="#" class="rounded-md px-3 py-2 text-sm text-center font-medium text-white hover:bg-gray-700 hover:text-white">Adidas</a>
+                        <a href="#" class="rounded-md px-3 py-2 text-sm text-center font-medium text-white hover:bg-gray-700 hover:text-white">Shop</a>
                     </div>
                 </div>
             </div>
@@ -37,10 +37,10 @@
 
                 <!-- Profile dropdown -->
                 <div class="relative ml-3">
-                    <button id="user-menu-button" type="button" aria-expanded="false" aria-haspopup="true" class="cursor-pointer relative flex rounded-full bg-gray-800 text-sm focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-gray-800">
+                    <button id="user-menu-button" type="button" aria-expanded="false" aria-haspopup="true" class="cursor-pointer relative flex rounded-full bg-white text-sm border-2 border-white hover:border-black">
                         <span class="absolute -inset-1.5"></span>
                         <span class="sr-only">Open user menu</span>
-                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" class="size-8 rounded-full" />
+                        <img src="{{ asset('Assets/Avatar.svg') }}" alt="" class="size-8 rounded-full" />
                     </button>
 
                     <!-- Profile-Menu -->
