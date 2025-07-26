@@ -20,7 +20,7 @@ Route::group(['prefix' => 'account'], function () {
 
     Route::group(['middleware' => 'auth'], function () {
         Route::get('/logout', [LoginController::class, 'logout'])->name('account.logout');
-        Route::get('/home', [HomeController::class, 'index'])->name('account.home');
+        Route::get('/choose', [HomeController::class, 'index'])->name('account.choose');
     });
 });
 

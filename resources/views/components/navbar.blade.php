@@ -19,7 +19,7 @@
                 </button>
             </div>
             <div class="max-sm:ml-10 flex shrink-0 items-center">
-                <img src="{{ asset('Assets/Logo-(2).png') }}" alt="Ash & Co." class="w-40 brightness-50 cursor-pointer" />
+                <a href="#"><img src="{{ asset('Assets/Logo-(2).png') }}" alt="Ash & Co." class="w-40 brightness-50 cursor-pointer" /></a>
             </div>
             <div class="flex flex-1 items-center justify-center sm:items-stretch">
                 <div class="hidden sm:block">
@@ -44,9 +44,9 @@
                         @endphp
 
                         @if ($admin)
-                        <span>Hello, Admin</span>
+                        <span class="capitalize">Hello, Admin</span>
                         @elseif ($user)
-                        <span>Hello, {{ $user->name }}</span>
+                        <span class="capitalize">Hello, {{ $user->name }}</span>
                         @endif
                         <span class="absolute -inset-1.5"></span>
                         <span class="sr-only">Open user menu</span>
@@ -62,10 +62,8 @@
                         @endphp
 
                         @if ($admin)
-                        Admin
                         <a id="user-menu-item-2" role="menuitem" href="{{ route('admin.logout') }}" tabindex="-1" class="block px-4 py-2 text-sm text-gray-700">Log out</a>
                         @elseif ($user)
-                        User
                         <a id="user-menu-item-2" role="menuitem" href="{{ route('account.logout') }}" tabindex="-1" class="block px-4 py-2 text-sm text-gray-700">Log out</a>
                         @endif
                     </div>
