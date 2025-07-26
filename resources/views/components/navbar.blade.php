@@ -6,7 +6,7 @@
                 <button type="button" aria-controls="mobile-menu" aria-expanded="false" class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-hidden focus:ring-inset">
                     <span class="absolute -inset-0.5"></span>
                     <span class="sr-only">Open main menu</span>
-                    
+
                     <!-- Menu Closed -->
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="block size-6">
                         <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -38,7 +38,16 @@
                 <!-- Profile dropdown -->
                 <div class="relative ml-3">
                     <button id="user-menu-button" type="button" aria-expanded="false" aria-haspopup="true" class="pl-2 cursor-pointer relative flex items-center gap-2 rounded-full bg-white text-sm border-2 border-white hover:bg-gray-100">
-                        <span class="capitalize">Hello, {{ Auth::user()->name }}</span>
+                        @php
+                        $admin = Auth::guard('admin')->user();
+                        $user = Auth::guard('web')->user();
+                        @endphp
+
+                        @if ($admin)
+                        <span>Hello, Admin</span>
+                        @elseif ($user)
+                        <span>Hello, {{ $user->name }}</span>
+                        @endif
                         <span class="absolute -inset-1.5"></span>
                         <span class="sr-only">Open user menu</span>
                         <img src="{{ asset('Assets/Avatar.svg') }}" alt="" class="size-8 rounded-full" />

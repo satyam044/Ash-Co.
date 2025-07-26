@@ -25,6 +25,7 @@ Route::group(['prefix' => 'account'], function () {
 });
 
 
-Route::get('admin/login', [AdminLoginConroller::class, 'index'])->name('admin.loin');
+Route::get('admin/login', [AdminLoginConroller::class, 'index'])->name('admin.login');
 Route::get('admin/home', [AdminHomeController::class, 'index'])->name('admin.home');
 Route::post('admin/authenticate', [AdminLoginConroller::class, 'authenticate'])->name('admin.authenticate');
+Route::get('admin/logout', [LoginController::class, 'logout'])->name('admin.logout');

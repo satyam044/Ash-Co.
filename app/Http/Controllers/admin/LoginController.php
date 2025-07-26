@@ -10,30 +10,38 @@ use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         return view('admin.login');
     }
 
     public function authenticate(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $credentials = $request->only('email', 'password');
+
+        $validator = Validator::make($credentials, [
             'email' => 'required|email',
-            'password' => 'required'
+            'password' => 'required',
         ]);
 
-        if ($validator->passes()) {
-            if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password])) {
-
-                return redirect()->route('admin.home');
-            } else {
-                return redirect()->route('admin.login')
-                    ->with('error', 'Incorrect email or password');
-            };
-        } else {
+        if ($validator->fails()) {
             return redirect()->route('admin.login')
                 ->withInput()
                 ->withErrors($validator);
         }
+
+        if (Auth::guard('admin')->attempt($credentials)) {
+            $user = Auth::guard('admin')->user();
+
+            if ($user->role !== 'admin') {
+                Auth::guard('admin')->logout();
+                return redirect()->route('admin.login')->with('error', 'Access denied: Not an admin.');
+            }
+
+            return redirect()->route('admin.home');
+        }
+
+        return redirect()->route('admin.login')->with('error', 'Incorrect email or password');
     }
 
     public function signup()
@@ -66,7 +74,7 @@ class LoginController extends Controller
 
     public function logout()
     {
-        Auth::logout();
+        Auth::guard('admin')->logout();
         return redirect()->route('admin.login');
     }
 }
