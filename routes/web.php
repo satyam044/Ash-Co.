@@ -24,8 +24,14 @@ Route::group(['prefix' => 'account'], function () {
     });
 });
 
+Route::group(['prefix' => 'admin'], function () {
+    Route::group(['middleware' => 'admin.guest'], function () {
+        Route::get('login', [AdminLoginConroller::class, 'index'])->name('admin.login');
+        Route::post('authenticate', [AdminLoginConroller::class, 'authenticate'])->name('admin.authenticate');
+    });
 
-Route::get('admin/login', [AdminLoginConroller::class, 'index'])->name('admin.login');
-Route::get('admin/home', [AdminHomeController::class, 'index'])->name('admin.home');
-Route::post('admin/authenticate', [AdminLoginConroller::class, 'authenticate'])->name('admin.authenticate');
-Route::get('admin/logout', [LoginController::class, 'logout'])->name('admin.logout');
+    Route::group(['middleware' => 'admin.auth'], function () {
+        Route::get('/home', [AdminHomeController::class, 'index'])->name('admin.home');
+        Route::get('/logout', [AdminLoginConroller::class, 'logout'])->name('admin.logout');
+    });
+});

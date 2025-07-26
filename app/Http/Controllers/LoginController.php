@@ -45,7 +45,9 @@ class LoginController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|email|unique:users',
-            'password' => 'required|confirmed'
+            'password' => 'required|confirmed',
+            'password_confirmation' => 'required',
+            'name' => 'required'
         ]);
 
         if ($validator->passes()) {
@@ -56,7 +58,7 @@ class LoginController extends Controller
             $user->role = 'customer';
             $user->save();
 
-            return redirect()->route('account.login')->with('success', 'You have registerd successfully!');
+            return redirect()->route('account.login')->with('success', 'You have successfully registerd!');
         } else {
             return redirect()->route('account.signup')
                 ->withInput()

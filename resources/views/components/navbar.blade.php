@@ -56,7 +56,18 @@
                     <!-- Profile-Menu -->
                     <div id="profile-menu" role="menu" class="hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 focus:outline-none">
                         <a id="user-menu-item-0" role="menuitem" href="#" tabindex="-1" class="block px-4 py-2 text-sm text-gray-700">Your Profile</a>
+                        @php
+                        $admin = Auth::guard('admin')->user();
+                        $user = Auth::guard('web')->user();
+                        @endphp
+
+                        @if ($admin)
+                        Admin
+                        <a id="user-menu-item-2" role="menuitem" href="{{ route('admin.logout') }}" tabindex="-1" class="block px-4 py-2 text-sm text-gray-700">Log out</a>
+                        @elseif ($user)
+                        User
                         <a id="user-menu-item-2" role="menuitem" href="{{ route('account.logout') }}" tabindex="-1" class="block px-4 py-2 text-sm text-gray-700">Log out</a>
+                        @endif
                     </div>
                 </div>
             </div>
